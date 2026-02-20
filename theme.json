@@ -1,0 +1,20 @@
+{
+    "name": "NIKABETON",
+    "version": "1.0",
+    "settings": {
+        "color": {
+            "palette": [
+                {
+                    "slug": "primary",
+                    "color": "#f87e00",
+                    "name": "Orange"
+                },
+                {
+                    "slug": "secondary",
+                    "color": "#1f1f1f",
+                    "name": "Dark Gray"
+                }
+            ]
+        }
+    }
+}

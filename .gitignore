@@ -1,0 +1,39 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+*.log
+
+# Composer
+vendor/
+
+# SASS
+.sass-cache/
+*.css.map
+
+# Compiled CSS (if you use preprocessors and commit only sources, though here we commit main.css)
+# css/main.css
+
+# WordPress specific (just in case they exist inside the theme folder)
+wp-config.php
+wp-content/uploads/
