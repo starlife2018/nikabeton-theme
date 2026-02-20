@@ -104,27 +104,142 @@ if( !class_exists('ACF') ) {
         $water = get_post_meta($post->ID, '_concrete_water', true);
         $plasticity = get_post_meta($post->ID, '_concrete_plasticity', true);
         
-        echo '<div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;">';
-        
-        echo '<p><label for="concrete_price"><strong>Ціна (грн/м3):</strong></label><br>';
-        echo '<input type="text" id="concrete_price" name="concrete_price" value="' . esc_attr($price) . '" class="widefat" /></p>';
+        ?>
+        <style>
+        .nb-concrete-meta-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            padding: 15px;
+            background: #f0f0f1;
+            border: 1px solid #c3c4c7;
+            border-radius: 8px;
+        }
+        .nb-form-group {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            padding: 18px;
+            border: 1px solid #dcdcde;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0,0,0,.04);
+            transition: all 0.2s ease-in-out;
+        }
+        .nb-form-group:hover {
+            border-color: #2271b1;
+            box-shadow: 0 2px 6px rgba(34,113,177,.15);
+        }
+        .nb-form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1d2327;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .nb-form-hint {
+            font-size: 12px;
+            color: #646970;
+            margin-top: 8px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+        .nb-form-control {
+            width: 100%;
+            padding: 6px 12px;
+            border: 1px solid #8c8f94;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 36px;
+            box-shadow: 0 0 0 transparent;
+            transition: box-shadow .1s linear;
+        }
+        .nb-form-control:focus {
+            border-color: #2271b1;
+            box-shadow: 0 0 0 1px #2271b1;
+            outline: 2px solid transparent;
+        }
+        .nb-price-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .nb-price-wrapper input {
+            padding-right: 60px;
+        }
+        .nb-price-suffix {
+            position: absolute;
+            right: 12px;
+            color: #50575e;
+            font-weight: 600;
+            pointer-events: none;
+            font-size: 14px;
+        }
+        </style>
 
-        echo '<p><label for="concrete_class"><strong>Клас (B):</strong> наприклад B15, В20</label><br>';
-        echo '<input type="text" id="concrete_class" name="concrete_class" value="' . esc_attr($class) . '" class="widefat" /></p>';
+        <div class="nb-concrete-meta-box">
 
-        echo '<p><label for="concrete_mark"><strong>Марка (M):</strong> наприклад M200, М250</label><br>';
-        echo '<input type="text" id="concrete_mark" name="concrete_mark" value="' . esc_attr($mark) . '" class="widefat" /></p>';
+            <div class="nb-form-group">
+                <label class="nb-form-label" for="concrete_price">Ціна</label>
+                <div class="nb-price-wrapper">
+                    <input type="number" id="concrete_price" name="concrete_price" value="<?php echo esc_attr($price); ?>" class="nb-form-control" step="0.01" placeholder="0.00" />
+                    <span class="nb-price-suffix">грн/м<sup>3</sup></span>
+                </div>
+                <div class="nb-form-hint">Вкажіть актуальну вартість за кубічний метр продукції.</div>
+            </div>
 
-        echo '<p><label for="concrete_frost"><strong>Морозостійкість (F):</strong> наприклад F50</label><br>';
-        echo '<input type="text" id="concrete_frost" name="concrete_frost" value="' . esc_attr($frost) . '" class="widefat" /></p>';
+            <div class="nb-form-group">
+                <label class="nb-form-label" for="concrete_mark">Марка бетону (M)</label>
+                <select id="concrete_mark" name="concrete_mark" class="nb-form-control">
+                    <option value="">--Виберіть марку--</option>
+                    <?php 
+                    $marks = ['M100','M150','M200','M250','M300','M350','M400','M450','M500','M550','M600','M650','M700','M750','M800','M850','M900','M950','M1000'];
+                    foreach($marks as $m): ?>
+                        <option value="<?php echo esc_attr($m); ?>" <?php selected($mark, $m); ?>><?php echo esc_html($m); ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="nb-form-hint">Міцність бетону. Величина межі міцності на стиск у кг/см<sup>2</sup>.</div>
+            </div>
 
-        echo '<p><label for="concrete_water"><strong>Водонепроникність (W):</strong> наприклад W6</label><br>';
-        echo '<input type="text" id="concrete_water" name="concrete_water" value="' . esc_attr($water) . '" class="widefat" /></p>';
+            <div class="nb-form-group">
+                <label class="nb-form-label" for="concrete_class">Клас міцності (B)</label>
+                <select id="concrete_class" name="concrete_class" class="nb-form-control">
+                    <option value="">--Виберіть клас--</option>
+                    <?php 
+                    $classes = ['B10','B15','B20','B25','B30','B35','B40','B45','B50','B55','B60','B65','B70','B75','B80','B85','B90','B95','B100'];
+                    foreach($classes as $c): ?>
+                        <option value="<?php echo esc_attr($c); ?>" <?php selected($class, $c); ?>><?php echo esc_html($c); ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="nb-form-hint">Гарантована міцність бетону (основний показник).</div>
+            </div>
 
-        echo '<p><label for="concrete_plasticity"><strong>Рухливість (П):</strong> наприклад П3 (Опціонально)</label><br>';
-        echo '<input type="text" id="concrete_plasticity" name="concrete_plasticity" value="' . esc_attr($plasticity) . '" class="widefat" /></p>';
+            <div class="nb-form-group">
+                <label class="nb-form-label" for="concrete_frost">Морозостійкість (F)</label>
+                <div class="nb-price-wrapper">
+                    <input type="number" id="concrete_frost" name="concrete_frost" value="<?php echo esc_attr($frost); ?>" class="nb-form-control" placeholder="Наприклад: 50" min="50" max="1000" />
+                    <span class="nb-price-suffix">F</span>
+                </div>
+                <div class="nb-form-hint">Кількість циклів замерзання-відтавання (від 50 до 1000).</div>
+            </div>
 
-        echo '</div>';
+            <div class="nb-form-group">
+                <label class="nb-form-label" for="concrete_water">Водонепроникність (W)</label>
+                <div class="nb-price-wrapper">
+                    <input type="number" max="20" min="2" id="concrete_water" name="concrete_water" value="<?php echo esc_attr($water); ?>" class="nb-form-control" placeholder="Наприклад: 6" />
+                    <span class="nb-price-suffix">W</span>
+                </div>
+                <div class="nb-form-hint">Тиск води, який витримує суміш (від 2 до 20).</div>
+            </div>
+
+            <div class="nb-form-group">
+                <label class="nb-form-label" for="concrete_plasticity">Рухливість (P)</label>
+                <input type="text" max="5" min="1" id="concrete_plasticity" name="concrete_plasticity" value="<?php echo esc_attr($plasticity); ?>" class="nb-form-control" placeholder="Наприклад: P3, P4" />
+                <div class="nb-form-hint">Доставка: самоскиди (Р1-Р3), міксери (Р3-Р5), подача бетононасосом (Р3-Р5).</div>
+            </div>
+
+        </div>
+        <?php
     }
 
     function nikabeton_save_concrete_specs($post_id) {

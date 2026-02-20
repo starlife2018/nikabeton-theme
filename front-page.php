@@ -11,33 +11,43 @@ get_header();
 	<main id="primary" class="site-main">
 
         <!-- HERO SECTION (Slider or Rotating Banners) -->
-        <section class="hero-section">
+        <?php
+        // Fetch hero settings from Customizer
+        $hero_bg       = get_theme_mod('nikabeton_hero_bg', '');
+        $hero_title    = get_theme_mod('nikabeton_hero_title', "ДОСТАВКА БЕТОНУ<br>ОРЕНДА БЕТОНОНАСОСУ");
+        $hero_subtitle = get_theme_mod('nikabeton_hero_subtitle', 'В КИЄВІ ТА ВИШГОРОДСЬКОМУ РАЙОНІ');
+        $hero_features = get_theme_mod('nikabeton_hero_features', "<li>✓ Без Вихідних</li>\n<li>✓ Доставка за 2 години</li>\n<li>✓ Сертифікати якості</li>");
+        $hero_btn_text = get_theme_mod('nikabeton_hero_btn_text', 'Замовити');
+        $hero_btn_link = get_theme_mod('nikabeton_hero_btn_link', '#order');
+
+        // Apply background image if it exists
+        $hero_style = '';
+        if ( ! empty( $hero_bg ) ) {
+            $hero_style = 'style="background-image: linear-gradient(135deg, rgba(30, 30, 30, 0.8) 0%, rgba(30, 30, 30, 0.5) 100%), url(\'' . esc_url($hero_bg) . '\'); background-size: cover; background-position: center;"';
+        }
+        ?>
+        <section class="hero-section" <?php echo $hero_style; ?>>
             <div class="container hero-container">
                 <div class="hero-slider" id="home-slider">
                     <!-- Variant 1 -->
                     <div class="hero-slide active">
                         <div class="hero-content">
-                            <h1 class="hero-title">ДОСТАВКА БЕТОНУ<br>ОРЕНДА БЕТОНОНАСОСУ</h1>
-                            <p class="hero-subtitle">В КИЄВІ ТА ВИШГОРОДСЬКОМУ РАЙОНІ</p>
-                            <ul class="clean-list hero-features mb-3">
-                                <li>✓ Без Вихідних</li>
-                                <li>✓ Доставка за 2 години</li>
-                                <li>✓ Сертифікати якості</li>
-                            </ul>
-                            <div class="hero-actions">
-                                <a href="#order" class="btn btn-primary btn-lg">Замовити</a>
-                            </div>
+                            <h1 class="hero-title"><?php echo wp_kses_post($hero_title); ?></h1>
+                            <p class="hero-subtitle"><?php echo esc_html($hero_subtitle); ?></p>
+                            <?php if(!empty($hero_features)): ?>
+                                <ul class="clean-list hero-features mb-3">
+                                    <?php echo wp_kses_post($hero_features); ?>
+                                </ul>
+                            <?php endif; ?>
+                            
+                            <?php if(!empty($hero_btn_text)): ?>
+                                <div class="hero-actions">
+                                    <a href="<?php echo esc_url($hero_btn_link); ?>" class="btn btn-primary btn-lg"><?php echo esc_html($hero_btn_text); ?></a>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     
-                    <!-- Further variants can be implemented via JS slider or ACF repeater. Hidden for simplicity here but structured for JS -->
-                    <div class="hero-slide" style="display:none;">
-                        <div class="hero-content">
-                            <h1 class="hero-title">ТОП Продаж</h1>
-                            <p class="hero-subtitle">Бетон В20 М250 F200 W6 - 2600 грн/м3<br>Найвигідніше співвідношення ціна/якість</p>
-                            <div class="hero-actions"><a href="#order" class="btn btn-primary btn-lg">Замовити</a></div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="hero-overlay"></div>
@@ -75,21 +85,35 @@ get_header();
                     ?>
                     <div class="product-card">
                         <?php if (has_post_thumbnail()) : ?>
-                            <div class="product-image"><?php the_post_thumbnail('medium'); ?></div>
+                            <div class="product-image">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('medium'); ?>
+                                </a>
+                            </div>
                         <?php else: ?>
-                            <div class="product-image placeholder-image text-center" style="line-height:200px; color:#fff;">Фото</div>
+                            <div class="product-image placeholder-image text-center">
+                                <a href="<?php the_permalink(); ?>" style="color:inherit; text-decoration:none; display:flex; width:100%; height:100%; align-items:center; justify-content:center;">Фото</a>
+                            </div>
                         <?php endif; ?>
                         
                         <div class="product-content">
-                            <h3 class="product-title"><?php echo esc_html($display_title); ?></h3>
-                            <div class="product-desc text-sm">
-                                <?php if ($class) echo 'Клас: <strong>'.esc_html($class).'</strong><br>'; ?>
-                                <?php if ($water) echo 'Водонепроникність: <strong>'.esc_html($water).'</strong><br>'; ?>
-                                <?php if ($plasticity) echo 'Рухливість: <strong>'.esc_html($plasticity).'</strong><br>'; ?>
+                            <a href="<?php the_permalink(); ?>"><h3 class="product-title"><?php echo esc_html($display_title); ?></h3></a>
+                            
+                            <div class="product-desc">
+                                <!-- Attributes as modern badges -->
+                                <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                                    <?php if ($class) : ?><span class="product-badge">Клас: <strong><?php echo esc_html($class); ?></strong></span><?php endif; ?>
+                                    <?php if ($water) : ?><span class="product-badge">Водонепр: <strong><?php echo esc_html($water); ?></strong></span><?php endif; ?>
+                                    <?php if ($plasticity) : ?><span class="product-badge">Рухл: <strong><?php echo esc_html($plasticity); ?></strong></span><?php endif; ?>
+                                </div>
                             </div>
+                            
                             <?php if ($price) : ?>
-                                <div class="product-price mt-2 mb-2"><strong><?php echo esc_html($price); ?> грн/м³</strong></div>
+                                <div class="product-price">
+                                    <strong><?php echo esc_html($price); ?></strong> <span class="unit">грн/м³</span>
+                                </div>
                             <?php endif; ?>
+                            
                             <a href="<?php the_permalink(); ?>" class="btn btn-primary btn-full mt-2">КУПИТИ</a>
                         </div>
                     </div>

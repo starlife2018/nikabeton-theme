@@ -23,6 +23,17 @@ function nikabeton_setup() {
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
 
+	// Add proper support for custom logo in Customizer
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'      => 80,
+			'width'       => 250,
+			'flex-width'  => true,
+			'flex-height' => true,
+		)
+	);
+
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus(
 		array(
@@ -72,6 +83,40 @@ require get_template_directory() . '/inc/cpt-portfolio.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+if ( ! function_exists( 'nikabeton_post_thumbnail' ) ) :
+	/**
+	 * Displays an optional post thumbnail.
+	 */
+	function nikabeton_post_thumbnail() {
+		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+			return;
+		}
+
+		if ( is_singular() ) :
+			?>
+			<div class="post-thumbnail">
+				<?php the_post_thumbnail(); ?>
+			</div><!-- .post-thumbnail -->
+		<?php else : ?>
+			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+				<?php
+					the_post_thumbnail(
+						'post-thumbnail',
+						array(
+							'alt' => the_title_attribute(
+								array(
+									'echo' => false,
+								)
+							),
+						)
+					);
+				?>
+			</a>
+			<?php
+		endif; // End is_singular().
+	}
+endif;
 
 /**
  * ------------------------------------------------------------------
