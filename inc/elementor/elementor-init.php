@@ -20,11 +20,13 @@ function nikabeton_register_elementor_widgets( $widgets_manager ) {
 	require_once( __DIR__ . '/widget-concrete.php' );
 	require_once( __DIR__ . '/widget-services.php' );
 	require_once( __DIR__ . '/widget-materials.php' );
+	require_once( __DIR__ . '/widget-calculator.php' );
 
 	// Register widget
 	$widgets_manager->register( new \Elementor_NikaBeton_Concrete_Widget() );
 	$widgets_manager->register( new \Elementor_NikaBeton_Services_Widget() );
 	$widgets_manager->register( new \Elementor_NikaBeton_Materials_Widget() );
+	$widgets_manager->register( new \Elementor_NikaBeton_Calculator_Widget() );
 }
 add_action( 'elementor/widgets/register', 'nikabeton_register_elementor_widgets' );
 
