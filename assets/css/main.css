@@ -10,7 +10,7 @@
     --color-dark: #333333;
     /* Dark gray for text */
     --color-darker: #151515;
-    --color-light: #d9d9d9;
+    --color-light: #FFFFFF;
     /* Main Light Grey Background from PDF */
     --color-white: #ffffff;
     --color-text-main: #2a2a2a;
@@ -153,6 +153,28 @@ h6 {
 
 .border-radius {
     border-radius: var(--border-radius);
+}
+
+/* ==========================================================================
+   ELEMENTOR COMPATIBILITY
+   ========================================================================== */
+.elementor-page .site-main {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.elementor-page .site-main .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+.elementor-section-wrap {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
 .grid {

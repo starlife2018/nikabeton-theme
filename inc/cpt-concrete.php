@@ -193,7 +193,7 @@ if( !class_exists('ACF') ) {
                 <select id="concrete_mark" name="concrete_mark" class="nb-form-control">
                     <option value="">--Виберіть марку--</option>
                     <?php 
-                    $marks = ['M100','M150','M200','M250','M300','M350','M400','M450','M500','M550','M600','M650','M700','M750','M800','M850','M900','M950','M1000'];
+                    $marks = ['M50','M75','M100','M150','M200','M250','M300','M350','M400','M450','M500','M550','M600','M650','M700','M750','M800','M850','M900','M950','M1000'];
                     foreach($marks as $m): ?>
                         <option value="<?php echo esc_attr($m); ?>" <?php selected($mark, $m); ?>><?php echo esc_html($m); ?></option>
                     <?php endforeach; ?>
@@ -206,7 +206,7 @@ if( !class_exists('ACF') ) {
                 <select id="concrete_class" name="concrete_class" class="nb-form-control">
                     <option value="">--Виберіть клас--</option>
                     <?php 
-                    $classes = ['B10','B15','B20','B25','B30','B35','B40','B45','B50','B55','B60','B65','B70','B75','B80','B85','B90','B95','B100'];
+                    $classes = ['B3.5', 'B5', 'B7.5', 'B10', 'B12.5', 'B15','B20','B25','B30','B35','B40','B45','B50','B55','B60','B65','B70','B75','B80','B85','B90','B95','B100'];
                     foreach($classes as $c): ?>
                         <option value="<?php echo esc_attr($c); ?>" <?php selected($class, $c); ?>><?php echo esc_html($c); ?></option>
                     <?php endforeach; ?>
@@ -233,8 +233,15 @@ if( !class_exists('ACF') ) {
             </div>
 
             <div class="nb-form-group">
-                <label class="nb-form-label" for="concrete_plasticity">Рухливість (P)</label>
-                <input type="text" max="5" min="1" id="concrete_plasticity" name="concrete_plasticity" value="<?php echo esc_attr($plasticity); ?>" class="nb-form-control" placeholder="Наприклад: P3, P4" />
+                <label class="nb-form-label" for="concrete_plasticity">Пластичність (P)</label>
+                <select id="concrete_plasticity" name="concrete_plasticity" class="nb-form-control">
+                    <option value="">--Виберіть пластичність--</option>
+                    <?php 
+                    $classes = ['P1', 'P2', 'P3', 'P4', 'P5'];
+                    foreach($classes as $c): ?>
+                        <option value="<?php echo esc_attr($c); ?>" <?php selected($plasticity, $c); ?>><?php echo esc_html($c); ?></option>
+                    <?php endforeach; ?>
+                </select>
                 <div class="nb-form-hint">Доставка: самоскиди (Р1-Р3), міксери (Р3-Р5), подача бетононасосом (Р3-Р5).</div>
             </div>
 

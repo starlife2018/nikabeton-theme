@@ -80,6 +80,18 @@ require get_template_directory() . '/inc/cpt-review.php';
 require get_template_directory() . '/inc/cpt-portfolio.php';
 
 /**
+ * Register Elementor Shortcodes
+ */
+require get_template_directory() . '/inc/shortcodes.php';
+
+/**
+ * Register Native Elementor Widgets
+ */
+if ( did_action( 'elementor/loaded' ) ) {
+    require get_template_directory() . '/inc/elementor/elementor-init.php';
+}
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';

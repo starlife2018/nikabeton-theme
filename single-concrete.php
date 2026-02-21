@@ -257,9 +257,9 @@ if ($class) $display_title .= ' ' . $class;
                         <div class="concrete-badges">
                             <?php if($class): ?><span class="c-badge c-badge-class">Клас: <?php echo esc_html($class); ?></span><?php endif; ?>
                             <?php if($mark): ?><span class="c-badge c-badge-mark">Марка: <?php echo esc_html($mark); ?></span><?php endif; ?>
-                            <?php if($frost): ?><span class="c-badge c-badge-frost">F: <?php echo esc_html($frost); ?></span><?php endif; ?>
-                            <?php if($water): ?><span class="c-badge c-badge-water">W: <?php echo esc_html($water); ?></span><?php endif; ?>
-                            <?php if($plasticity): ?><span class="c-badge c-badge-plasticity">П: <?php echo esc_html($plasticity); ?></span><?php endif; ?>
+                            <?php if($frost): ?><span class="c-badge c-badge-frost">Морозостійкість: F<?php echo esc_html($frost); ?></span><?php endif; ?>
+                            <?php if($water): ?><span class="c-badge c-badge-water">Водонепроникність: W<?php echo esc_html($water); ?></span><?php endif; ?>
+                            <?php if($plasticity): ?><span class="c-badge c-badge-plasticity">Пластичність: P<?php echo esc_html($plasticity); ?></span><?php endif; ?>
                         </div>
 
                         <?php if($price): ?>
