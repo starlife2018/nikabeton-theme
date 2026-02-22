@@ -77,7 +77,7 @@ class Elementor_NikaBeton_Concrete_Widget extends \Elementor\Widget_Base {
 			[
 				'label' => 'Текст нижньої кнопки',
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => 'Прайс Лист',
+				'default' => 'Прайс-лист',
 			]
 		);
 
@@ -153,9 +153,9 @@ class Elementor_NikaBeton_Concrete_Widget extends \Elementor\Widget_Base {
 								<div style="display:flex; flex-wrap:wrap; gap:8px;">
 									<?php if ($mark) : ?><span class="product-badge">Марка: <strong><?php echo esc_html($mark); ?></strong></span><?php endif; ?>
 									<?php if ($class) : ?><span class="product-badge">Клас: <strong><?php echo esc_html($class); ?></strong></span><?php endif; ?>
-									<?php if ($water) : ?><span class="product-badge">Водонепроникність: <strong><?php echo esc_html($water); ?></strong></span><?php endif; ?>
-									<?php if ($plasticity) : ?><span class="product-badge">Пластичність: <strong><?php echo esc_html($plasticity); ?></strong></span><?php endif; ?>
-									<?php if ($frost) : ?><span class="product-badge">Морозостійкість: <strong><?php echo esc_html($frost); ?></strong></span><?php endif; ?>
+									<?php if ($water) : ?><span class="product-badge">Водонепроникність: <strong>W<?php echo esc_html($water); ?></strong></span><?php endif; ?>
+									<?php if ($plasticity) : ?><span class="product-badge">Пластичність: <strong>P<?php echo esc_html($plasticity); ?></strong></span><?php endif; ?>
+									<?php if ($frost) : ?><span class="product-badge">Морозостійкість: <strong>F<?php echo esc_html($frost); ?></strong></span><?php endif; ?>
 								</div>
 							</div>
 							

@@ -83,6 +83,28 @@
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
+<!-- Global Order Modal -->
+<div id="orderModal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Замовити Бетон / Послугу</h2>
+        <p>Залиште ваш номер телефону і ми передзвонимо вам протягом 10 хвилин.</p>
+        <form id="globalOrderForm" class="lead-form mt-2" method="POST">
+            <div class="form-group">
+                <input type="text" name="client_name" placeholder="Ваше ім'я" required style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+            </div>
+            <div class="form-group">
+                <input type="tel" name="client_phone" placeholder="Ваш телефон*" required style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+            </div>
+            <div class="form-group">
+                <textarea name="client_message" placeholder="Що вас цікавить?" rows="3" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Відправити заявку</button>
+            <div class="form-message mt-2" style="display:none; padding:10px; border-radius:5px;"></div>
+        </form>
+    </div>
+</div>
+
 <?php wp_footer(); ?>
 
 </body>

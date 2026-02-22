@@ -61,4 +61,87 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // 4. Modal Logic
+    const modal = document.getElementById('orderModal');
+    const closeBtn = document.querySelector('.close-modal');
+
+    document.querySelectorAll('.open-modal-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+        });
+    });
+
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) modal.classList.add('hidden');
+        });
+    }
+
+    // 5. AJAX Form Submission
+    const forms = document.querySelectorAll('.lead-form, .order-form-modern, #globalOrderForm');
+    forms.forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const msgBox = form.querySelector('.form-message') || document.createElement('div');
+
+            if (!form.querySelector('.form-message')) {
+                msgBox.className = 'form-message mt-2 p-2 border-radius';
+                form.appendChild(msgBox);
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Відправка...';
+            }
+
+            const formData = new FormData(form);
+            formData.append('action', 'nikabeton_send_mail');
+
+            fetch(nikabetonAjax.ajaxurl, {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.json())
+                .then(response => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Відправити заявку';
+                    }
+
+                    msgBox.style.display = 'block';
+                    if (response.success) {
+                        msgBox.style.backgroundColor = '#d4edda';
+                        msgBox.style.color = '#155724';
+                        msgBox.innerHTML = response.data.message;
+                        form.reset();
+                        setTimeout(() => {
+                            if (modal) modal.classList.add('hidden');
+                            msgBox.style.display = 'none';
+                        }, 4000);
+                    } else {
+                        msgBox.style.backgroundColor = '#f8d7da';
+                        msgBox.style.color = '#721c24';
+                        msgBox.innerHTML = response.data.message || 'Помилка';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Відправити заявку';
+                    }
+                    msgBox.style.display = 'block';
+                    msgBox.style.backgroundColor = '#f8d7da';
+                    msgBox.style.color = '#721c24';
+                    msgBox.innerHTML = 'Виникла помилка з\'єднання.';
+                });
+        });
+    });
+
 });

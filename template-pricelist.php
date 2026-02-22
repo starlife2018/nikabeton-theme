@@ -30,7 +30,7 @@ get_header(); ?>
 
 		<!-- SECTION: CONCRETE PRICES -->
 		<div class="pricelist-section mb-5">
-			<h2 class="section-title mb-4" style="border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; display: inline-block;">Прайс-лист на Бетон</h2>
+			<h2 class="section-title mb-4" style="border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; display: inline-block;">Бетон</h2>
 			
 			<div class="table-responsive bg-white border-radius shadow" style="overflow-x: auto;">
 				<table class="pricelist-table" style="width: 100%; border-collapse: collapse; text-align: left;">
@@ -94,13 +94,13 @@ get_header(); ?>
 
 		<!-- SECTION: SERVICES PRICES -->
 		<div class="pricelist-section">
-			<h2 class="section-title mb-4" style="border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; display: inline-block;">Прайс-лист на Послуги</h2>
+			<h2 class="section-title mb-4" style="border-bottom: 2px solid var(--color-primary); padding-bottom: 10px; display: inline-block;">Послуги</h2>
 			
 			<div class="table-responsive bg-white border-radius shadow" style="overflow-x: auto;">
 				<table class="pricelist-table" style="width: 100%; border-collapse: collapse; text-align: left;">
 					<thead>
 						<tr style="background-color: #f8f9fa; border-bottom: 2px solid #ddd;">
-							<th style="padding: 15px; width: 60%;">Найменування послуги</th>
+							<th style="padding: 15px; width: 60%;">Найменування</th>
 							<th style="padding: 15px; text-align: right; color: var(--color-primary);">Вартість</th>
 						</tr>
 					</thead>

@@ -144,7 +144,7 @@ class Elementor_NikaBeton_Hero_Slider_Widget extends \Elementor\Widget_Base {
 			[
 				'label' => 'Висота Слайдера (px)',
 				'type' => \Elementor\Controls_Manager::NUMBER,
-				'default' => 600,
+				'default' => 800,
 			]
 		);
 		$this->end_controls_section();
@@ -153,7 +153,7 @@ class Elementor_NikaBeton_Hero_Slider_Widget extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$slides = $settings['slides'];
-		$height = !empty($settings['height']) ? $settings['height'] : 600;
+		$height = !empty($settings['height']) ? $settings['height'] : 800;
 
 		$slider_id = 'nikabeton-slider-' . $this->get_id();
 
@@ -384,7 +384,7 @@ class Elementor_NikaBeton_Hero_Slider_Widget extends \Elementor\Widget_Base {
 			function prevSlide() { showSlide(currentSlide - 1); }
 
 			function startAutoplay() {
-				interval = setInterval(nextSlide, 5000);
+				interval = setInterval(nextSlide, 15000);
 			}
 			function stopAutoplay() {
 				clearInterval(interval);

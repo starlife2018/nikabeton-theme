@@ -66,6 +66,9 @@ function nikabeton_scripts() {
 	wp_enqueue_style( 'nikabeton-main-style', get_template_directory_uri() . '/assets/css/main.css', array(), _S_VERSION );
 
 	wp_enqueue_script( 'nikabeton-main-js', get_template_directory_uri() . '/assets/js/main.js', array(), _S_VERSION, true );
+	wp_localize_script( 'nikabeton-main-js', 'nikabetonAjax', array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' )
+	) );
 }
 add_action( 'wp_enqueue_scripts', 'nikabeton_scripts' );
 
@@ -78,6 +81,11 @@ require get_template_directory() . '/inc/cpt-service.php';
 require get_template_directory() . '/inc/cpt-zone.php';
 require get_template_directory() . '/inc/cpt-review.php';
 require get_template_directory() . '/inc/cpt-portfolio.php';
+
+/**
+ * Handle AJAX Forms
+ */
+require get_template_directory() . '/inc/ajax-form.php';
 
 /**
  * Register Elementor Shortcodes
@@ -152,7 +160,7 @@ function nikabeton_install_demo_content() {
         update_post_meta($c1, '_concrete_mark', 'М250');
         update_post_meta($c1, '_concrete_frost', 'F200');
         update_post_meta($c1, '_concrete_water', 'W6');
-        update_post_meta($c1, '_concrete_plasticity', 'П3');
+        update_post_meta($c1, '_concrete_plasticity', 'P3');
     }
 
     // --- Concrete 2 ---
@@ -167,7 +175,7 @@ function nikabeton_install_demo_content() {
         update_post_meta($c2, '_concrete_mark', 'М350');
         update_post_meta($c2, '_concrete_frost', 'F200');
         update_post_meta($c2, '_concrete_water', 'W6');
-        update_post_meta($c2, '_concrete_plasticity', 'П3');
+        update_post_meta($c2, '_concrete_plasticity', 'P3');
     }
 
     // --- Service 1 ---
