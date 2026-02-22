@@ -12,11 +12,12 @@ get_header();
         <header class="page-header bg-dark text-white py-section text-center">
             <div class="container">
                 <?php
-                if ( is_post_type_archive('concrete') ) {
+                /*if ( is_post_type_archive('concrete') ) {
                     echo '<h1 class="page-title">Прайс-лист на Бетон</h1>';
                 } elseif ( is_tax('concrete_type') ) {
                     the_archive_title( '<h1 class="page-title">', '</h1>' );
-                }
+                }*/
+                the_archive_title( '<h1 class="page-title">', '</h1>' );
                 ?>
             </div>
         </header>
@@ -28,11 +29,11 @@ get_header();
                         <thead>
                             <tr style="background-color: var(--color-light); border-bottom: 2px solid var(--color-primary);">
                                 <th style="padding:1rem;">Найменування</th>
-                                <th style="padding:1rem;">Клас (B)</th>
                                 <th style="padding:1rem;">Марка (M)</th>
-                                <th style="padding:1rem;">Мороз. (F)</th>
-                                <th style="padding:1rem;">Водонепр. (W)</th>
-                                <th style="padding:1rem;">Рухливість (П)</th>
+                                <th style="padding:1rem;">Клас (B)</th>                                
+                                <th style="padding:1rem;">Морозостійкість (F)</th>
+                                <th style="padding:1rem;">Водонепроникність (W)</th>
+                                <th style="padding:1rem;">Пластичність (P)</th>
                                 <th style="padding:1rem;">Ціна (грн/м³)</th>
                                 <th style="padding:1rem;"></th>
                             </tr>

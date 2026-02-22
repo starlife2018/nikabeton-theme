@@ -45,3 +45,6 @@ function nikabeton_elementor_category( $elements_manager ) {
 	);
 }
 add_action( 'elementor/elements/categories_registered', 'nikabeton_elementor_category' );
+
+// Include Dynamic Tags
+require_once( __DIR__ . '/dynamic-tags.php' );

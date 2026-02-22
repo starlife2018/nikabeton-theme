@@ -130,8 +130,8 @@ class Elementor_NikaBeton_Concrete_Widget extends \Elementor\Widget_Base {
 							$plasticity = get_post_meta(get_the_ID(), '_concrete_plasticity', true);
 							
 							$display_title = get_the_title();
-							if ($mark) $display_title .= ' - ' . $mark;
-							if ($frost) $display_title .= ' ' . $frost;
+							//if ($mark) $display_title .= ' - ' . $mark;
+							//if ($frost) $display_title .= ' ' . $frost;
 					?>
 					<div class="product-card">
 						<?php if (has_post_thumbnail()) : ?>
@@ -151,9 +151,11 @@ class Elementor_NikaBeton_Concrete_Widget extends \Elementor\Widget_Base {
 							
 							<div class="product-desc">
 								<div style="display:flex; flex-wrap:wrap; gap:8px;">
+									<?php if ($mark) : ?><span class="product-badge">Марка: <strong><?php echo esc_html($mark); ?></strong></span><?php endif; ?>
 									<?php if ($class) : ?><span class="product-badge">Клас: <strong><?php echo esc_html($class); ?></strong></span><?php endif; ?>
 									<?php if ($water) : ?><span class="product-badge">Водонепроникність: <strong><?php echo esc_html($water); ?></strong></span><?php endif; ?>
 									<?php if ($plasticity) : ?><span class="product-badge">Пластичність: <strong><?php echo esc_html($plasticity); ?></strong></span><?php endif; ?>
+									<?php if ($frost) : ?><span class="product-badge">Морозостійкість: <strong><?php echo esc_html($frost); ?></strong></span><?php endif; ?>
 								</div>
 							</div>
 							
