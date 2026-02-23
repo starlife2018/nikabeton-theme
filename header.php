@@ -56,14 +56,11 @@
             </div>
 
             <div class="header-contacts">
-                <?php $main_phone = get_theme_mod('nikabeton_phone_main', '050-382-4812'); ?>
-                <!--<a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $main_phone)); ?>" class="header-phone">
+                <?php $main_phone = get_theme_mod('nikabeton_phone_main', '+38(050)382-48-12'); ?>
+                <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $main_phone)); ?>" class="header-phone">
                     <?php echo esc_html($main_phone); ?>
-                </a>-->
-                <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $main_phone)); ?>" class="btn btn-primary btn-sm open-modal-btn">
-					<i class="dashicons dashicons-phone" style="color: #ffffff; font-size: 20px; margin-right: 10px;"> </i>
-					<?php echo esc_html($main_phone); ?>
-				</a>
+                </a>
+                <a href="#" class="btn btn-primary btn-sm open-modal-btn">Зв'язатись</a>
             </div>
 			
 		</div><!-- .container -->
@@ -83,3 +80,4 @@
 	</header><!-- #masthead -->
 
     <div id="content" class="site-content">
+
