@@ -51,14 +51,16 @@ function nikabeton_shortcode_hero() {
     return ob_get_clean();
 }
 
+/////////////////////////////////////////
 // 2. Concrete Products Grid
+/////////////////////////////////////////
 add_shortcode('nikabeton_products', 'nikabeton_shortcode_products');
 function nikabeton_shortcode_products() {
     ob_start();
     ?>
     <section class="products-section py-section" id="concrete">
         <div class="container">
-            <!-- <h2 class="section-title text-center">ВИРОБНИЦТВО БЕТОНУ</h2> -->
+          <h2 class="section-title text-center">ВИРОБНИЦТВО ТА ДОСТАВКА БЕТОНУ</h2>
             <div class="grid grid-3 products-grid mt-4">
                 <?php
                 $args = array(

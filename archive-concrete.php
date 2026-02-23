@@ -12,12 +12,12 @@ get_header();
         <header class="page-header bg-dark text-white py-section text-center">
             <div class="container">
                 <?php
-                /*if ( is_post_type_archive('concrete') ) {
+                if ( is_post_type_archive('concrete') ) {
                     echo '<h1 class="page-title">Прайс-лист на Бетон</h1>';
                 } elseif ( is_tax('concrete_type') ) {
                     the_archive_title( '<h1 class="page-title">', '</h1>' );
-                }*/
-                the_archive_title( '<h1 class="page-title">', '</h1>' );
+                }
+                
                 ?>
             </div>
         </header>
