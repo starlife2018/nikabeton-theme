@@ -9,7 +9,7 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main">
-        <header class="page-header bg-dark text-white py-section text-center">
+        <header class="page-header bg-white text-dark py-section text-center">
             <div class="container">
                 <?php
                 if ( is_post_type_archive('concrete') ) {
@@ -52,8 +52,8 @@ get_header();
                             ?>
                             <tr style="border-bottom: 1px solid var(--color-border); transition: var(--transition-speed);" onmouseover="this.style.backgroundColor='#f9f9f9';" onmouseout="this.style.backgroundColor='transparent';">
                                 <td style="padding:1rem;"><strong><a href="<?php the_permalink(); ?>" style="color:var(--color-dark); text-decoration:none;"><?php the_title(); ?></a></strong></td>
-                                <td style="padding:1rem;"><?php echo esc_html($class ? $class : '-'); ?></td>
                                 <td style="padding:1rem;"><?php echo esc_html($mark ? $mark : '-'); ?></td>
+                                <td style="padding:1rem;"><?php echo esc_html($class ? $class : '-'); ?></td>                                
                                 <td style="padding:1rem;"><?php echo esc_html($frost ? $frost : '-'); ?></td>
                                 <td style="padding:1rem;"><?php echo esc_html($water ? $water : '-'); ?></td>
                                 <td style="padding:1rem;"><?php echo esc_html($plasticity ? $plasticity : '-'); ?></td>

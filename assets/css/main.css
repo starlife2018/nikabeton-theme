@@ -1,24 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 /* ==========================================================================
    RESET & VARIABLES
    ========================================================================== */
 :root {
     /* Colors */
     --color-primary: #f87e00;
-    /* Orange (Action) from PDF */
-    --color-primary-dark: #111010;
-    /* Darker Orange */
-    --color-dark: #333333;
-    /* Dark gray for text */
-    --color-darker: #151515;
-    --color-light: #FFFFFF;
-    /* Main Light Grey Background from PDF */
+    /* Action Orange */
+    --color-primary-dark: #cc6800;
+    --color-dark: #111827;
+    /* Modern dark gray, almost black */
+    --color-darker: #030712;
+    --color-light: #f9fafb;
+    /* Modern off-white background */
     --color-white: #ffffff;
-    --color-text-main: #2a2a2a;
-    --color-text-muted: #646464;
-    --color-border: #cccccc;
+    --color-text-main: #374151;
+    /* Softer text color for better readability */
+    --color-text-muted: #6b7280;
+    --color-border: #e5e7eb;
 
     /* Typography */
-    --font-primary: 'Inter', 'Roboto', sans-serif;
+    --font-primary: 'Inter', sans-serif;
 
     /* Structure */
     --container-max-width: 1200px;
@@ -26,7 +28,10 @@
     --space-md: 2rem;
     --space-lg: 4rem;
     --space-xl: 6rem;
-    --border-radius: 8px;
+    --border-radius: 16px;
+    /* Larger, smoother border radius */
+    --box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+    /* Modern soft shadow */
     --transition-speed: 0.3s;
 }
 
@@ -40,8 +45,11 @@ body {
     font-family: var(--font-primary);
     color: var(--color-text-main);
     line-height: 1.6;
-    background-color: var(--color-light);
+    background-color: var(--color-white);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    /* Crisp fonts on Mac/iOS */
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -109,10 +117,15 @@ h6 {
 }
 
 .py-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
 
-    padding-top: 20px;
-    padding-bottom: 20px;
-
+@media (max-width: 768px) {
+    .py-section {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
 }
 
 .py-content {
@@ -157,6 +170,19 @@ h6 {
 
 .border-radius {
     border-radius: var(--border-radius);
+}
+
+.shadow {
+    box-shadow: var(--box-shadow);
+}
+
+.hover-scale {
+    transition: transform var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow var(--transition-speed) ease;
+}
+
+.hover-scale:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px -10px rgba(0, 0, 0, 0.12);
 }
 
 /* ==========================================================================
@@ -1056,8 +1082,10 @@ label {
 /* Page title */
 .page-title {
     font-size: 1.5rem;
-    color: var(--color-dark);
+    color: var(--color-text-main);
     margin: 0;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
 }
 
 /* Page subtitle */
@@ -1065,4 +1093,22 @@ label {
     font-size: 0.75rem;
     color: var(--color-text-muted);
     margin: 0;
+}
+
+/* Services Archive card styles */
+.service-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid var(--color-border);
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+    border-color: var(--color-primary);
+}
+
+.service-item .btn {
+    margin-top: auto;
 }

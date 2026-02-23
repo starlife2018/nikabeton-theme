@@ -252,7 +252,7 @@ if ($class) $display_title .= ' ' . $class;
                             </div>
                         <?php endif; ?>
 
-                        <h1 class="concrete-title"><?php echo esc_html($display_title); ?></h1>
+                        <h1 class="concrete-title"><?php echo esc_html(get_the_title()); ?></h1>
                         
                         <div class="concrete-badges">
                             <?php if($class): ?><span class="c-badge c-badge-class">Клас: <?php echo esc_html($class); ?></span><?php endif; ?>

@@ -7,14 +7,14 @@
 
 function nikabeton_register_cpt_zone() {
 	$labels = array(
-		'name'                  => _x( 'Зони Обслуговування', 'Post Type General Name', 'nikabeton' ),
+		'name'                  => _x( 'Зони обслуговування', 'Post Type General Name', 'nikabeton' ),
 		'singular_name'         => _x( 'Зона', 'Post Type Singular Name', 'nikabeton' ),
-		'menu_name'             => __( 'Зони Доставки', 'nikabeton' ),
-		'all_items'             => __( 'Всі Зони', 'nikabeton' ),
-		'add_new_item'          => __( 'Додати Зону', 'nikabeton' ),
+		'menu_name'             => __( 'Зони обслуговування', 'nikabeton' ),
+		'all_items'             => __( 'Всі зони', 'nikabeton' ),
+		'add_new_item'          => __( 'Додати зону', 'nikabeton' ),
 		'add_new'               => __( 'Додати нову', 'nikabeton' ),
-		'new_item'              => __( 'Нова Зона', 'nikabeton' ),
-		'edit_item'             => __( 'Редагувати Зону', 'nikabeton' ),
+		'new_item'              => __( 'Нова зона', 'nikabeton' ),
+		'edit_item'             => __( 'Редагувати зону', 'nikabeton' ),
 	);
 	$args = array(
 		'label'                 => __( 'Зона', 'nikabeton' ),
@@ -37,7 +37,7 @@ add_action( 'init', 'nikabeton_register_cpt_zone', 0 );
  */
 if( !class_exists('ACF') ) {
     function nikabeton_add_zone_metaboxes() {
-        add_meta_box( 'nikabeton_zone_specs', 'Деталі Зони (Локація)', 'nikabeton_zone_specs_callback', 'zone', 'normal', 'high' );
+        add_meta_box( 'nikabeton_zone_specs', 'Деталі зони (локація)', 'nikabeton_zone_specs_callback', 'zone', 'normal', 'high' );
     }
     add_action('add_meta_boxes', 'nikabeton_add_zone_metaboxes');
 
