@@ -57,10 +57,10 @@
 
             <div class="header-contacts">
                 <?php $main_phone = get_theme_mod('nikabeton_phone_main', '+38(050)382-48-12'); ?>
-                <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $main_phone)); ?>" class="header-phone">
+                <!--<a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $main_phone)); ?>" class="header-phone">
                     <?php echo esc_html($main_phone); ?>
-                </a>
-                <a href="#" class="btn btn-primary btn-sm open-modal-btn">Зв'язатись</a>
+                </a>-->
+                <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $main_phone)); ?>" class="btn btn-primary btn-sm open-modal-btn"><?php echo get_theme_mod('nikabeton_phone_main', '+38(050)382-48-12'); ?></a>
             </div>
 			
 		</div><!-- .container -->
