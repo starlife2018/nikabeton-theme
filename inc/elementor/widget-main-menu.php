@@ -50,19 +50,20 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                     <!-- Main Menu -->
                     <div class="nav-menu-container" id="elementor-nav-container">
                         <ul class="main-menu-list">
-                            <li class="menu-item"><a href="/#services">Послуги</a></li>
+                            <li class="menu-item"><a href="/beton/">Бетон</a></li>
+                            <li class="menu-item"><a href="/service/">Послуги</a></li>
                             <li class="menu-item has-dropdown">
-                                <a href="/#zones">Зони обслуговування <span class="dropdown-icon">▼</span></a>
+                                <a href="/zone/">Зони обслуговування <span class="dropdown-icon">▼</span></a>
                                 <ul class="submenu shadow">
                                     <li><a href="/zone/kyiv/">Київ</a></li>
                                     <li><a href="/zone/vyshhorod/">Вишгород</a></li>
                                 </ul>
                             </li>
                             <li class="menu-item"><a href="/portfolio/">Портфоліо</a></li>
-                            <li class="menu-item"><a href="/#about">Історія компанії</a></li>
+                            <li class="menu-item"><a href="/about/">Історія компанії</a></li>
                             <li class="menu-item"><a href="/blog/">Блог</a></li>
                             <li class="menu-item has-dropdown">
-                                <a href="/#contacts">Контакти <span class="dropdown-icon">▼</span></a>
+                                <a href="/contact/">Контакти <span class="dropdown-icon">▼</span></a>
                                 <ul class="submenu shadow">
                                     <li><a href="/contact/kyiv/">Київ</a></li>
                                     <li><a href="/contact/vyshhorod/">Вишгород</a></li>
@@ -76,13 +77,22 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
         </div>
 
         <style>
+            :root {
+                --menu-text-color: #333333;
+                --menu-hover-color: var(--color-primary);
+                --menu-bg-color: #ffffff;
+                --dropdown-bg: #ffffff;
+                --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+                --shadow-sticky: 0 4px 20px rgba(0, 0, 0, 0.05);
+            }
+
             /* Base menu styles */
             .nikabeton-header-menu-widget {
-                background-color: var(--color-white);
-                border-bottom: 2px solid var(--color-primary);
+                background-color: var(--menu-bg-color);
                 width: 100%;
                 z-index: 999;
-                transition: all 0.3s ease;
+                transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+                border-bottom: 1px solid rgba(0,0,0,0.05);
             }
 
             /* Sticky functionality */
@@ -90,12 +100,16 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                 position: fixed;
                 top: 0;
                 left: 0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                animation: slideDown 0.3s ease-out forwards;
+                box-shadow: var(--shadow-sticky);
+                animation: slideDown 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
             }
+            
             @keyframes slideDown {
-                from { transform: translateY(-100%); }
-                to { transform: translateY(0); }
+                from { transform: translateY(-100%); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
             }
 
             .main-navigation-elementor {
@@ -108,7 +122,7 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                 padding: 0;
                 display: flex;
                 justify-content: center;
-                gap: 30px;
+                gap: 40px; /* increased gap for premium feel */
             }
 
             .menu-item {
@@ -117,65 +131,119 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
 
             .menu-item > a {
                 display: block;
-                padding: 20px 0;
-                color: var(--color-dark);
+                padding: 24px 0;
+                color: var(--menu-text-color);
                 text-decoration: none;
-                font-weight: 500;
-                font-size: 1.05rem;
-                transition: color 0.2s ease;
+                font-weight: 600;
+                font-size: 0.95rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: color 0.3s ease;
+                position: relative;
+            }
+
+            /* Underline Hover Effect */
+            .menu-item > a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                display: block;
+                margin-top: 5px;
+                right: 0;
+                background: var(--color-primary);
+                transition: width 0.3s ease;
+                -webkit-transition: width 0.3s ease;
             }
 
             .menu-item:hover > a {
-                color: var(--color-primary);
+                color: var(--menu-hover-color);
+            }
+            
+            .menu-item:hover > a::after {
+                width: 100%;
+                left: 0;
+                background: var(--color-primary);
             }
 
             .dropdown-icon {
-                font-size: 0.7em;
-                margin-left: 4px;
+                font-size: 0.6em;
+                margin-left: 6px;
                 vertical-align: middle;
+                transition: transform 0.3s ease;
+                display: inline-block;
+            }
+            
+            .menu-item.has-dropdown:hover .dropdown-icon {
+                transform: rotate(180deg);
+                color: var(--color-primary);
             }
 
             /* Submenu Dropdown */
             .submenu {
                 position: absolute;
                 top: 100%;
-                left: 0;
-                background: var(--color-white);
-                min-width: 220px;
+                left: 50%;
+                transform: translateX(-50%) translateY(15px);
+                background: var(--dropdown-bg);
+                min-width: 240px;
                 list-style: none;
                 margin: 0;
-                padding: 10px 0;
+                padding: 15px 0;
                 opacity: 0;
                 visibility: hidden;
-                transform: translateY(10px);
-                transition: all 0.3s ease;
+                transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
                 z-index: 100;
-                border-top: 3px solid var(--color-primary);
+                border-radius: 8px;
+                box-shadow: var(--shadow-soft);
+                border: 1px solid rgba(0,0,0,0.03);
+            }
+
+            /* Invisible bridge to prevent hover loss */
+            .menu-item.has-dropdown::before {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                height: 20px;
+                background: transparent;
+                z-index: 99;
             }
 
             .menu-item.has-dropdown:hover .submenu {
                 opacity: 1;
                 visibility: visible;
-                transform: translateY(0);
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .submenu li {
+                padding: 0 10px;
             }
 
             .submenu li a {
                 display: block;
-                padding: 10px 20px;
-                color: var(--color-dark);
+                padding: 12px 20px;
+                color: #555555;
                 text-decoration: none;
-                transition: background 0.2s;
+                transition: all 0.2s ease;
+                font-size: 0.95rem;
+                font-weight: 500;
+                border-radius: 6px;
             }
 
             .submenu li a:hover {
-                background: rgba(42, 172, 86, 0.1);
+                background: rgba(248, 126, 0, 0.05); /* very light primary */
                 color: var(--color-primary);
+                transform: translateX(5px);
             }
 
             /* Mobile Menu Styles */
             @media (max-width: 991px) {
                 .nikabeton-header-menu-widget {
-                    padding: 15px 0;
+                    padding: 12px 0;
+                    border-bottom: 0;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
                 }
                 
                 .mobile-menu-header {
@@ -184,53 +252,94 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                     align-items: center;
                 }
 
+                .mobile-logo span {
+                    background: linear-gradient(135deg, #333 0%, #111 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    letter-spacing: 0.5px;
+                }
+                
+                .mobile-logo span span {
+                    color: var(--color-primary);
+                    -webkit-text-fill-color: var(--color-primary);
+                }
+
+                /* Animated Hamburger */
                 .menu-toggle-btn {
                     background: transparent;
                     border: none;
                     cursor: pointer;
                     width: 30px;
-                    height: 24px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
+                    height: 22px;
+                    position: relative;
                     padding: 0;
+                    z-index: 1001; /* Above mobile menu */
                 }
 
                 .menu-toggle-btn span {
                     display: block;
-                    height: 3px;
+                    position: absolute;
+                    height: 2px;
                     width: 100%;
                     background-color: var(--color-dark);
                     border-radius: 2px;
-                    transition: all 0.3s ease;
+                    opacity: 1;
+                    left: 0;
+                    transform: rotate(0deg);
+                    transition: .25s ease-in-out;
+                }
+
+                .menu-toggle-btn span:nth-child(1) { top: 0px; }
+                .menu-toggle-btn span:nth-child(2) { top: 10px; }
+                .menu-toggle-btn span:nth-child(3) { top: 20px; }
+
+                /* Hamburger active state (X) */
+                .menu-toggle-btn.open span:nth-child(1) {
+                    top: 10px;
+                    transform: rotate(135deg);
+                }
+                .menu-toggle-btn.open span:nth-child(2) {
+                    opacity: 0;
+                    left: -60px;
+                }
+                .menu-toggle-btn.open span:nth-child(3) {
+                    top: 10px;
+                    transform: rotate(-135deg);
                 }
 
                 .nav-menu-container {
-                    display: none;
-                    width: 100%;
+                    display: block; /* Setup for slide animation */
                     position: absolute;
                     top: 100%;
                     left: 0;
+                    width: 100%;
                     background: var(--color-white);
-                    padding: 20px 0;
-                    box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-top: 1px solid #ebebeb;
+                    padding: 0;
+                    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+                    border-top: 1px solid rgba(0,0,0,0.05);
+                    /* Slide down animation setup */
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
                 }
 
                 .nav-menu-container.active {
-                    display: block;
+                    max-height: 800px; /* arbitrary large max-height for transition */
                 }
 
                 .main-menu-list {
                     flex-direction: column;
                     gap: 0;
+                    padding: 10px 0 20px 0;
                 }
-
-                .menu-item { border-bottom: 1px solid #f5f5f5; }
-                .menu-item:last-child { border-bottom: none; }
 
                 .menu-item > a {
-                    padding: 12px 20px;
+                    padding: 16px 20px;
+                    font-size: 1.1rem;
+                    border-bottom: 1px solid rgba(0,0,0,0.03);
                 }
+                
+                .menu-item > a::after { display: none; } /* NO underline on mobile */
 
                 .submenu {
                     position: static;
@@ -238,16 +347,24 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                     visibility: visible;
                     transform: none;
                     box-shadow: none !important;
-                    border-top: none;
-                    background: #f9f9f9;
-                    display: none;
+                    border: none;
+                    background: #fafafa;
+                    display: none; /* simple toggle for mobile */
+                    padding: 0;
+                    width: 100%;
                 }
 
                 .menu-item.has-dropdown.active .submenu {
                     display: block;
                 }
                 
-                .submenu li a { padding-left: 40px; }
+                .submenu li a { 
+                    padding: 14px 20px 14px 40px; 
+                    font-size: 1rem;
+                    border-bottom: 1px solid rgba(0,0,0,0.02);
+                    border-radius: 0;
+                }
+                .submenu li a:hover { transform: none; }
             }
         </style>
 
@@ -259,7 +376,7 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                     const stickyOffset = menuWidget.offsetTop;
 
                     window.addEventListener('scroll', function() {
-                        if (window.pageYOffset > stickyOffset + 100) {
+                        if (window.pageYOffset > stickyOffset + 50) {
                             menuWidget.classList.add('is-sticky');
                             // To prevent jumping content, add padding to body equal to menu height
                             document.body.style.paddingTop = menuWidget.offsetHeight + 'px';
@@ -276,18 +393,8 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
 
                 if (toggleBtn && navContainer) {
                     toggleBtn.addEventListener('click', function() {
-                        navContainer.classList.toggle('active');
-                        // Transform hamburger into X (optional visual enhancement)
-                        const spans = this.querySelectorAll('span');
-                        if (navContainer.classList.contains('active')) {
-                            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                            spans[1].style.opacity = '0';
-                            spans[2].style.transform = 'rotate(-45deg) translate(8px, -8px)';
-                        } else {
-                            spans[0].style.transform = 'none';
-                            spans[1].style.opacity = '1';
-                            spans[2].style.transform = 'none';
-                        }
+                        this.classList.toggle('open'); // triggers X animation
+                        navContainer.classList.toggle('active'); // triggers slide down
                     });
                 }
 
@@ -298,6 +405,18 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                         item.addEventListener('click', function(e) {
                             e.preventDefault();
                             this.parentElement.classList.toggle('active');
+                            
+                            // Rotate chevron for mobile
+                            const icon = this.querySelector('.dropdown-icon');
+                            if(icon) {
+                                if(this.parentElement.classList.contains('active')) {
+                                    icon.style.transform = 'rotate(180deg)';
+                                    icon.style.color = 'var(--color-primary)';
+                                } else {
+                                    icon.style.transform = 'rotate(0deg)';
+                                    icon.style.color = 'inherit';
+                                }
+                            }
                         });
                     });
                 }

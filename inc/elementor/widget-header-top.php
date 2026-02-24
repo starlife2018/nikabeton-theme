@@ -137,19 +137,16 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
                     <!-- Logo Area -->
                     <div class="header-logo-area">
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="logo-link">
-                            <span class="logo-text text-primary">Ніка<br>Бетон</span>
+                            <span class="logo-text">Ніка<span>Бетон</span></span>
                         </a>
-                        <div class="logo-alt-text text-muted text-xs mt-1">
-                            Виробництво та<br>доставка бетону
-                        </div>
                     </div>
 
                     <!-- Right Side Container -->
                     <div class="header-right-side">
                         
                         <!-- Addresses -->
-                        <div class="header-info-block header-address-area">
-                            <div class="info-icon text-primary"><i class="dashicons dashicons-location"></i></div>
+                        <div class="header-pill header-address-area">
+                            <div class="info-icon"><i class="dashicons dashicons-location"></i></div>
                             <div class="info-content">
                                 <?php if(!empty($settings['address_1'])): ?>
                                     <div><a href="/#zones" class="header-text-link"><?php echo esc_html($settings['address_1']); ?></a></div>
@@ -160,33 +157,27 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
                             </div>
                         </div>
 
-                        <!-- Divider -->
-                        <div class="header-divider"></div>
-
                         <!-- Work Hours -->
-                        <div class="header-info-block header-hours-area">
-                            <div class="info-icon text-primary"><i class="dashicons dashicons-clock"></i></div>
+                        <div class="header-pill header-hours-area">
+                            <div class="info-icon"><i class="dashicons dashicons-clock"></i></div>
                             <div class="info-content">
                                 <?php if(!empty($settings['hours_weekdays'])): ?>
-                                    <div style="font-weight: 500;"><?php echo esc_html($settings['hours_weekdays']); ?></div>
+                                    <div style="font-weight: 500; font-size:0.85rem;"><?php echo esc_html($settings['hours_weekdays']); ?></div>
                                 <?php endif; ?>
                                 <?php if(!empty($settings['hours_weekends'])): ?>
-                                    <div style="font-weight: 500;"><?php echo esc_html($settings['hours_weekends']); ?></div>
+                                    <div style="color:var(--text-luxury-muted); font-size:0.75rem;"><?php echo esc_html($settings['hours_weekends']); ?></div>
                                 <?php endif; ?>
                             </div>
                         </div>
 
-                        <!-- Divider -->
-                        <div class="header-divider"></div>
-
                         <!-- Phone & Messengers -->
-                        <div class="header-info-block header-contact-area">
-                            <div class="info-icon text-primary"><i class="dashicons dashicons-phone"></i></div>
-                            <div class="info-content">
+                        <div class="header-pill header-contact-area">
+                            <div class="info-icon"><i class="dashicons dashicons-phone"></i></div>
+                            <div class="info-content" style="display:flex; align-items:center;">
                                 <a href="tel:<?php echo esc_attr($settings['phone_link']); ?>" class="header-phone">
                                     <?php echo esc_html($settings['phone_display']); ?>
                                 </a>
-                                <div class="header-messengers mt-1">
+                                <div class="header-messengers">
                                     <?php if(!empty($settings['link_viber'])): ?>
                                         <a href="<?php echo esc_url($settings['link_viber']); ?>" target="_blank" title="Viber" class="messenger-pulse">
                                             <div class="msg-icon msg-viber">
@@ -225,10 +216,21 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
             </div>
             
             <style>
+                :root {
+                    --bg-luxury-dark: #121212;
+                    --bg-pill: rgba(255, 255, 255, 0.05);
+                    --bg-pill-hover: rgba(255, 255, 255, 0.1);
+                    --border-pill: rgba(255, 255, 255, 0.08);
+                    --text-luxury-light: #e0e0e0;
+                    --text-luxury-muted: #888888;
+                }
+
                 .nikabeton-header-top {
-                    background: var(--color-white);
-                    padding: 12px 0;
-                    border-bottom: 1px solid var(--color-border);
+                    background: var(--bg-luxury-dark);
+                    padding: 8px 0;
+                    border-bottom: 1px solid rgba(255,255,255,0.05);
+                    color: var(--text-luxury-light);
+                    font-family: inherit;
                 }
                 
                 .header-top-flex {
@@ -243,57 +245,77 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
                 
                 .logo-link {
                     text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
                 }
 
                 .logo-text {
-                    font-size: 2.2rem;
-                    font-weight: 900;
-                    line-height: 0.9;
+                    font-size: 1.6rem;
+                    font-weight: 800;
+                    line-height: 1;
                     text-transform: uppercase;
-                    letter-spacing: -1px;
+                    letter-spacing: 1px;
+                    background: linear-gradient(135deg, #ffffff 0%, #aaaaaa 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
                 }
 
-                .logo-alt-text {
-                    line-height: 1.2;
-                    letter-spacing: 0.5px;
+                .logo-text span {
+                    color: var(--color-primary);
+                    -webkit-text-fill-color: var(--color-primary);
                 }
 
                 .header-right-side {
                     display: flex;
                     align-items: center;
-                    gap: 25px;
+                    gap: 15px;
                 }
 
-                .header-divider {
-                    width: 1px;
-                    height: 40px;
-                    background-color: var(--color-border);
-                }
-
-                .header-info-block {
+                .header-pill {
                     display: flex;
-                    align-items: flex-start;
+                    align-items: center;
                     gap: 10px;
+                    background: var(--bg-pill);
+                    border: 1px solid var(--border-pill);
+                    padding: 6px 16px;
+                    border-radius: 50px;
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                    transition: all 0.3s ease;
+                }
+
+                .header-pill:hover {
+                    background: var(--bg-pill-hover);
+                    border-color: rgba(255,255,255,0.15);
+                    transform: translateY(-1px);
                 }
 
                 .info-icon {
-                    margin-top: 3px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--color-primary);
                 }
                 
                 .info-icon .dashicons {
-                    font-size: 1.2rem;
-                    width: 1.2rem;
-                    height: 1.2rem;
+                    font-size: 1.1rem;
+                    width: 1.1rem;
+                    height: 1.1rem;
                 }
 
                 .info-content {
-                    font-size: 0.85rem;
-                    line-height: 1.4;
-                    color: var(--color-text-main);
+                    font-size: 0.8rem;
+                    line-height: 1.3;
+                    letter-spacing: 0.3px;
+                }
+
+                .info-content div {
+                    white-space: nowrap;
                 }
 
                 .header-text-link {
-                    color: var(--color-text-main);
+                    color: var(--text-luxury-light);
                     text-decoration: none;
                     transition: color 0.2s ease;
                 }
@@ -302,15 +324,24 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
                     color: var(--color-primary);
                 }
 
+                .header-contact-area {
+                    background: rgba(248, 126, 0, 0.08); /* slight primary tint */
+                    border-color: rgba(248, 126, 0, 0.2);
+                }
+
+                .header-contact-area:hover {
+                    background: rgba(248, 126, 0, 0.15);
+                    border-color: rgba(248, 126, 0, 0.4);
+                }
+
                 .header-phone {
-                    font-size: 1.3rem;
-                    font-weight: 800;
-                    color: var(--color-dark);
+                    font-size: 1.1rem;
+                    font-weight: 700;
+                    color: #ffffff;
                     text-decoration: none;
                     transition: color 0.2s ease;
                     letter-spacing: 0.5px;
                     display: block;
-                    line-height: 1;
                 }
 
                 .header-phone:hover {
@@ -319,45 +350,61 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
 
                 .header-messengers {
                     display: flex;
-                    gap: 6px;
+                    gap: 8px;
+                    margin-left: 5px;
+                    border-left: 1px solid rgba(255,255,255,0.1);
+                    padding-left: 12px;
                 }
 
                 .messenger-pulse {
                     display: inline-block;
-                    transition: transform 0.2s ease;
+                    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 }
                 
                 .messenger-pulse:hover {
-                    transform: scale(1.15);
+                    transform: scale(1.2) translateY(-2px);
                 }
 
                 .msg-icon {
-                    width: 24px;
-                    height: 24px;
-                    border-radius: 50%;
+                    width: 22px;
+                    height: 22px;
+                    border-radius: 5px; /* slighly rounded squares for luxury look */
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     color: #fff;
+                    opacity: 0.85;
+                    transition: opacity 0.2s ease;
+                }
+
+                .messenger-pulse:hover .msg-icon {
+                    opacity: 1;
                 }
                 
-                .msg-viber { background: #7360f2; }
-                .msg-telegram { background: #2AABEE; }
-                .msg-whatsapp { background: #25D366; }
-                .msg-youtube { background: #FF0000; }
+                .msg-viber { background: linear-gradient(135deg, #8f5db7, #7360f2); }
+                .msg-telegram { background: linear-gradient(135deg, #38c2ff, #2AABEE); }
+                .msg-whatsapp { background: linear-gradient(135deg, #4aec7b, #25D366); }
+                .msg-youtube { background: linear-gradient(135deg, #ff4b4b, #FF0000); }
 
                 /* Responsiveness */
-                @media (max-width: 1100px) {
-                    .header-top-flex { flex-direction: column; gap: 15px; }
-                    .header-logo-area { text-align: center; }
-                    .header-right-side { flex-wrap: wrap; justify-content: center; }
-                    .header-divider { display: none; }
+                @media (max-width: 1024px) {
+                    .header-top-flex { gap: 10px; }
+                    .header-address-area .info-content,
+                    .header-hours-area .info-content { display: none; } /* Hide text, keep icons */
+                    .header-pill { padding: 8px; border-radius: 50%; width: 36px; height: 36px; justify-content: center; cursor: pointer; }
+                    .header-contact-area { border-radius: 50px; width: auto; justify-content: space-between; padding: 6px 12px 6px 16px; }
+                    .header-contact-area .info-icon { display: none; }
                 }
 
                 @media (max-width: 576px) {
-                    .nikabeton-header-top {
-                        display: none; /* Mobile completely hides top bar, uses Main Menu instead */
+                    .header-pill.header-address-area,
+                    .header-pill.header-hours-area {
+                        display: none; /* Hide purely informational pills on tiny screens to save space */
                     }
+                    .logo-text { font-size: 1.3rem; }
+                    .header-phone { font-size: 0.95rem; }
+                    .header-messengers { padding-left: 8px; gap: 5px; margin-left: 0; }
+                    .msg-icon { width: 20px; height: 20px; border-radius: 4px; }
                 }
             </style>
         </div>
