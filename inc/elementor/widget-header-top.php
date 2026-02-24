@@ -79,6 +79,14 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
 				'default' => 'https://wa.me/380503824812',
 			]
 		);
+        $this->add_control(
+			'link_youtube',
+			[
+				'label' => 'YouTube посилання',
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => '',
+			]
+		);
 
         // Work Hours
         $this->add_control(
@@ -173,7 +181,7 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
 
                         <!-- Phone & Messengers -->
                         <div class="header-info-block header-contact-area">
-                            <div class="info-icon text-primary" style="font-size: 1.4rem; padding-top:2px;">&#9990;</div>
+                            <div class="info-icon text-primary"><i class="dashicons dashicons-phone"></i></div>
                             <div class="info-content">
                                 <a href="tel:<?php echo esc_attr($settings['phone_link']); ?>" class="header-phone">
                                     <?php echo esc_html($settings['phone_display']); ?>
@@ -197,6 +205,13 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
                                         <a href="<?php echo esc_url($settings['link_whatsapp']); ?>" target="_blank" title="WhatsApp" class="messenger-pulse">
                                             <div class="msg-icon msg-whatsapp">
                                                 <svg viewBox="0 0 448 512" style="width: 12px; height: 12px; fill: currentColor;"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM224 430.7h-.1c-33.1-.1-65.5-8.9-94-25.7l-6.7-4-69.9 18.3L72 351.1l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.1 0-101.9 82.9-184.8 184.8-184.8 49.3 0 95.7 19.2 130.6 54.1 34.9 34.9 54.1 81.3 54.1 130.7.1 101.9-82.8 184.7-184.8 184.7z"/></svg>
+                                            </div>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if(!empty($settings['link_youtube'])): ?>
+                                        <a href="<?php echo esc_url($settings['link_youtube']); ?>" target="_blank" title="YouTube" class="messenger-pulse">
+                                            <div class="msg-icon msg-youtube">
+                                                <svg viewBox="0 0 576 512" style="width: 12px; height: 12px; fill: currentColor;"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
                                             </div>
                                         </a>
                                     <?php endif; ?>
@@ -329,6 +344,7 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
                 .msg-viber { background: #7360f2; }
                 .msg-telegram { background: #2AABEE; }
                 .msg-whatsapp { background: #25D366; }
+                .msg-youtube { background: #FF0000; }
 
                 /* Responsiveness */
                 @media (max-width: 1100px) {
