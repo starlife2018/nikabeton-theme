@@ -42,9 +42,15 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="mobile-logo" style="text-decoration:none;">
                             <span class="text-primary" style="font-size: 1.5rem; font-weight: 900;">НікаБетон</span>
                         </a>
-                        <button class="menu-toggle-btn" id="elementor-menu-toggle" aria-label="Toggle Menu">
-                            <span></span><span></span><span></span>
-                        </button>
+                        
+                        <div class="mobile-header-actions">
+                            <a href="tel:+380503824812" class="mobile-phone-link">
+                                <i class="dashicons dashicons-phone"></i> 050-382-48-12
+                            </a>   
+                            <button class="menu-toggle-btn" id="elementor-menu-toggle" aria-label="Toggle Menu">
+                                <span></span><span></span><span></span>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Main Menu -->
@@ -62,13 +68,14 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                             <li class="menu-item"><a href="/portfolio/">Портфоліо</a></li>
                             <li class="menu-item"><a href="/about/">Історія компанії</a></li>
                             <li class="menu-item"><a href="/blog/">Блог</a></li>
-                            <li class="menu-item has-dropdown">
+                            <li class="menu-item"><a href="/contact/">Контакти</a></li>
+                            <!--<li class="menu-item has-dropdown">
                                 <a href="/contact/">Контакти <span class="dropdown-icon">▼</span></a>
                                 <ul class="submenu shadow">
                                     <li><a href="/contact/kyiv/">Київ</a></li>
                                     <li><a href="/contact/vyshhorod/">Вишгород</a></li>
                                 </ul>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
 
@@ -172,6 +179,7 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                 vertical-align: middle;
                 transition: transform 0.3s ease;
                 display: inline-block;
+                line-height: 1; /* prevent height shift on rotation */
             }
             
             .menu-item.has-dropdown:hover .dropdown-icon {
@@ -235,7 +243,7 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
             .submenu li a:hover {
                 background: rgba(248, 126, 0, 0.05); /* very light primary */
                 color: var(--color-primary);
-                transform: translateX(5px);
+                padding-left: 25px; /* Alternative to transform for safe slight indentation, removing 5px from right if needed, but padding-left override works */
             }
 
             /* Mobile Menu Styles */
@@ -250,6 +258,31 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                     display: flex !important;
                     justify-content: space-between;
                     align-items: center;
+                }
+
+                .mobile-header-actions {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                }
+
+                .mobile-phone-link {
+                    color: var(--color-primary, #f87e00);
+                    text-decoration: none;
+                    font-size: 1.05rem;
+                    font-weight: 700;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                }
+
+                .mobile-phone-link i {
+                    font-size: 1.1rem;
+                    width: 1.1rem;
+                    height: 1.1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
                 .mobile-logo span {
@@ -365,6 +398,19 @@ class Elementor_NikaBeton_Main_Menu_Widget extends \Elementor\Widget_Base {
                     border-radius: 0;
                 }
                 .submenu li a:hover { transform: none; }
+            }
+
+            @media (max-width: 480px) {
+                .mobile-logo span { font-size: 1.3rem !important; }
+                .mobile-phone-link { font-size: 0.95rem; }
+                .mobile-header-actions { gap: 10px; }
+            }
+
+            @media (max-width: 360px) {
+                .mobile-logo span { font-size: 1.1rem !important; }
+                .mobile-phone-link { font-size: 0.85rem; }
+                .mobile-phone-link i { font-size: 0.9rem; width: 0.9rem; height: 0.9rem; }
+                .mobile-header-actions { gap: 8px; }
             }
         </style>
 

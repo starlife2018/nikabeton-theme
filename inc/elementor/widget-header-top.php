@@ -397,14 +397,28 @@ class Elementor_NikaBeton_Header_Top_Widget extends \Elementor\Widget_Base {
                 }
 
                 @media (max-width: 576px) {
+                    .header-top-flex {
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 10px;
+                        padding-bottom: 5px;
+                    }
+                    .header-right-side {
+                        width: 100%;
+                        justify-content: center;
+                    }
+                    .header-contact-area {
+                        width: 100%;
+                        justify-content: center;
+                    }
                     .header-pill.header-address-area,
                     .header-pill.header-hours-area {
                         display: none; /* Hide purely informational pills on tiny screens to save space */
                     }
-                    .logo-text { font-size: 1.3rem; }
-                    .header-phone { font-size: 0.95rem; }
-                    .header-messengers { padding-left: 8px; gap: 5px; margin-left: 0; }
-                    .msg-icon { width: 20px; height: 20px; border-radius: 4px; }
+                    .logo-text { font-size: 1.4rem; }
+                    .header-phone { font-size: 1.05rem; }
+                    .header-messengers { padding-left: 10px; gap: 8px; margin-left: 0; }
+                    .msg-icon { width: 24px; height: 24px; border-radius: 4px; }
                 }
             </style>
         </div>
